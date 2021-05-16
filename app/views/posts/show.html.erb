@@ -1,5 +1,5 @@
 <h1>Url: '/posts/show'<h1>
-<%= stylesheet_link_tag 'style.css' %>
+# <%= stylesheet_link_tag 'main.scss' %>
 <h2><%= @post.title %></h2>
 <p><%= @post.body %></p>
 <p><%= @post.created_at %></p>
@@ -10,5 +10,13 @@
     <%= button_to 'Delete', post_path(@post), method: :delete, data: { confirm: 'Are you sure?' } %>
 </div>
 
+<%= render 'comments/form' %>
 
+<% @comments.each do |comment| %>
+    <%= comment.body %><br>
+    <small><%= time_ago_in_words(comment.created_at) %></small><br>
+    <%= button_to('Delete', post_comment_path(@post, comment),
+                  method: :delete, data:{ confirm: 'Are you sure?' }) %>
+    <hr>
+<% end %>
 

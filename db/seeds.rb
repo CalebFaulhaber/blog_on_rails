@@ -6,8 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+Comment.destroy_all
 Post.destroy_all
-
 
 50.times do
     created_at = Faker::Date.backward(days:365 * 5)

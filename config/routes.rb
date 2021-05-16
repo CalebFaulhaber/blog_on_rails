@@ -22,6 +22,16 @@ Rails.application.routes.draw do
   #   - destroy(maybe delete) // method
   #     - redirect // delete request
 
-  resources :posts
+  resources :posts do
+    resources :comments, only:[ :create, :destroy ]
+  end
+  # # PATHS
+  # index  - products_path
+  # new    - new_product_path
+  # edit   - edit_product_path
+  # show   - product_path
+  # create - n/a
+  # update - n/a
+  # destroy - n/a
 
 end
