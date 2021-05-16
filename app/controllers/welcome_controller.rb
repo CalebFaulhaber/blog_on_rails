@@ -1,7 +1,7 @@
 class WelcomeController < ApplicationController
 
     def home
-
+        redirect_to posts_path
     end
 
     # - create 
