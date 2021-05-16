@@ -1,0 +1,13 @@
+<h1>Posts Index Page</h1>
+<h2>Url: '/posts/index'</h2>
+
+<% @posts.each do |post| %>
+    <div>
+        <h3><%= link_to post.title post_path(post) %></h3>
+        <P><%= post.body %></p>
+    </div>
+<% end %>
+
+
+
+
