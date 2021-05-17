@@ -1,0 +1,34 @@
+<%= form_for @post do |p| %>
+
+    <div lass="card new_post_outer_container">
+        <div class="new_post_inner_container">
+            <div>
+                <%= p.label :title %>:
+            </div>
+        
+            <div>
+                <%= p.text_field :title %>
+            </div>
+        </div>
+
+        <div class="new_post_inner_container">
+            <div>
+                <%= p.label :body %>:
+            </div>
+
+            <div>
+                <%= p.text_field :body %>
+            </div>
+        </div>
+
+        <div class="new_post_inner_container">
+            <%= p.submit %>
+        </div>
+    </div>
+
+
+<% end %>
+
+
+
+
