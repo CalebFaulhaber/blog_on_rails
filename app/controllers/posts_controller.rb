@@ -19,13 +19,14 @@ class PostsController < ApplicationController
             redirect_to posts_path
         else
             p @post.errors.full_messages
-            render :posts
+            render :new
         end
     
     end
 
     def show
-        
+        @comment = Comment.new
+        @comments = @post.comments.order(created_at: :desc)
     end
 
     def edit
