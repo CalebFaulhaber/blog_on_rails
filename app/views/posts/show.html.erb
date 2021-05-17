@@ -1,21 +1,20 @@
-<h1>Url: '/posts/show'<h1>
-<h2><%= @post.title %></h2>
-<p><%= @post.body %></p>
-<p><%= @post.created_at %></p>
-<p><%= @post.updated_at %></p>
+<%# <h1>Url: '/posts/show'<h1> %>
+<div class="card outer_show_container">
+    <h2 class="card-title"><%= @post.title %></h2>
+    <p class="card-text"><%= @post.body %></p>
+    <p class="card-subtitle mb-2"><%= time_ago_in_words(@post.created_at) %></p>
 
-<div>
-    <%= button_to 'Edit', edit_post_path(@post), method: :get %>
-    <%= button_to 'Delete', post_path(@post), method: :delete, data: { confirm: 'Are you sure?' } %>
+    <div class="d-flex justify-content-start">
+        <%= button_to 'Edit', edit_post_path(@post), method: :get %>
+        <%= button_to 'Delete', post_path(@post), method: :delete, data: { confirm: 'Are you sure?' } %>
+    </div>
+
+    <%= render 'comments/form' %>
+
+    <% @comments.each do |comment| %>
+        <%= comment.body %><br>
+        <small><%= time_ago_in_words(comment.created_at) %></small><br>
+        <%= button_to('Delete', post_comment_path(@post, comment),
+                    method: :delete, data:{ confirm: 'Are you sure?' }) %>
+    <% end %>
 </div>
-
-<%= render 'comments/form' %>
-
-<% @comments.each do |comment| %>
-    <%= comment.body %><br>
-    <small><%= time_ago_in_words(comment.created_at) %></small><br>
-    <%= button_to('Delete', post_comment_path(@post, comment),
-                  method: :delete, data:{ confirm: 'Are you sure?' }) %>
-    <hr>
-<% end %>
-

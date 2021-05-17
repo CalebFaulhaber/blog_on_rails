@@ -1,6 +1,67 @@
 // Write personal CSS here
 
+body {
+    min-width: 400px;
+    min-height: 300px;
+}
 
+.outer_nav_container {
+    width: 100%;
+    height: 50px;
+    background-color: lightgray;
+    align-items: center;
+    font-size: 23px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
 
+.inner_nav_container>div {
+    margin-left: 30px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.index_container {
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.index_container>div {
+    float: left;
+    width: 22rem;
+    margin: 0 1%;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    text-align: left;
+    padding: 10px;
+}
+
+.outer_show_container {
+    padding: 10px;
+}
+
+.outer_show_container>* {
+    margin-bottom: 10px;
+}
+
+// .create_coments_container {
+//     margin-top: 0px;
+//     margin-bottom: 0px;
+//     padding-top: 0px;
+//     padding-bottom: 0px;
+// }
+
+.new_post_outer_container {
+    width: 100%
+}
+
+.new_post_inner_container {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 15px;
+}
 
 

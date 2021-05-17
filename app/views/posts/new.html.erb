@@ -1,16 +1,31 @@
 <%= form_for @post do |p| %>
 
-    <div>
-        <%= p.label :title %>
-        <%= p.text_field :title %>
+    <div lass="card new_post_outer_container">
+        <div class="new_post_inner_container">
+            <div>
+                <%= p.label :title %>:
+            </div>
+        
+            <div>
+                <%= p.text_field :title %>
+            </div>
+        </div>
+
+        <div class="new_post_inner_container">
+            <div>
+                <%= p.label :body %>:
+            </div>
+
+            <div>
+                <%= p.text_field :body %>
+            </div>
+        </div>
+
+        <div class="new_post_inner_container">
+            <%= p.submit %>
+        </div>
     </div>
 
-    <div>
-        <%= p.label :body %>
-        <%= p.text_field :body %>
-    </div>
-
-    <%= p.submit %>
 
 <% end %>
 
