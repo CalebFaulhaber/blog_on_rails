@@ -34,4 +34,6 @@ Rails.application.routes.draw do
   # update - n/a
   # destroy - n/a
 
+  resources :users, only:[:new, :create]
+
 end

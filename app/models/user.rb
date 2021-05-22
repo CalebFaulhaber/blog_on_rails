@@ -1,6 +1,8 @@
 class User < ApplicationRecord
  
   has_secure_password
+  has_many :posts
+  has_many :comments
 
   REGEX_EMAIL = /^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$/
   validates :name, 
