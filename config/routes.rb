@@ -35,5 +35,8 @@ Rails.application.routes.draw do
   # destroy - n/a
 
   resources :users, only:[:new, :create]
+  resources :sessions, only:[:new, :create]
+
+  delete '/sessions', to: 'sessions#destroy'
 
 end

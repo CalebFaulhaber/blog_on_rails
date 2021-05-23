@@ -4,7 +4,7 @@ class User < ApplicationRecord
   has_many :posts
   has_many :comments
 
-  REGEX_EMAIL = /^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$/
+  REGEX_EMAIL = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :name, 
       presence: { message: 'Must include a name' }, 
       length: { minimum: 3 }
