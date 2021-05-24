@@ -15,7 +15,7 @@ PASSWORD = 'supersecret'
   name: :caleb,
   :email => 'caleb@faul.com',
   password_digest: BCrypt::Password.create(PASSWORD),
-  # is_admin: true
+  is_admin: true
 )
 
 10.times do

@@ -10,6 +10,11 @@ class ApplicationController < ActionController::Base
     end
     helper_method :user_signed_in?
 
-    
-    
+    def authenticate_user!
+      unless user_signed_in?
+        flash[:danger] = 'Sign in before trying that!'
+        redirect_to new_session_path
+      end
+    end
+        
 end
