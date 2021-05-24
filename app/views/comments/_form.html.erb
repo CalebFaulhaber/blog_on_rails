@@ -1,20 +1,20 @@
 <%= form_with(model:[@post, @comment], local:true) do |f| %>
 
-    <%# if @comment.errors.full_messages.each do |msg| %>
-        <%# <ul> %>
-            <%# <li> %>
-                <%#= msg %>
-            <%# </li> %>
-        <%# </ul> %>
-    <%# end; end %>
+    <% if @comment.errors.full_messages.each do |msg| %>
+      <ul>
+        <li>
+          <%= msg %>
+        </li>
+      </ul>
+    <% end; end %>
     <%# <div class="create_coments_container"> %>
-        <div>Comments:</div>
-        <div>
-            <%= f.text_area(:body,
-                            cols: 50,
-                            rows: 5,
-                            placeholder: 'What is your comment?') %>
-        </div>
+    <div>Comments:</div>
+      <div>
+        <%= f.text_area(:body,
+                          cols: 50,
+                          rows: 5,
+                          placeholder: 'What is your comment?') %>
+      </div>
     <%# </div> %>
     <%= f.submit 'Comment' %>
 

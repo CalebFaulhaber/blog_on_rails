@@ -9,7 +9,7 @@ class Post < ApplicationRecord
 
     validates :body,
         presence: { message: 'Must include a message' },
-        length: { minimum: 50, message: 'Minimum 50 characters' }
+        length: { minimum: 5, message: 'Minimum 5 characters' }
 
     # # PATHS
     # index  - products_path

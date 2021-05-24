@@ -4,7 +4,7 @@ class Comment < ApplicationRecord
     belongs_to :user, optional: true
 
     validates :body, 
-    presence: { message: 'Please enter a message' }
+      presence: { message: 'Please enter a message' }
     # length: { minimum: 10, message: 'Minimum 10 characters' }
 
     # # PATHS

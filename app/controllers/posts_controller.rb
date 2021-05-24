@@ -11,17 +11,17 @@ class PostsController < ApplicationController
     end
 
     def create
+      p post_params
+      @post = Post.new post_params
+      @post.user = current_user
 
-        @post = Post.new post_params
-
-        if @post.save
-            flash[:notice] = 'Post created successfully!'
-            redirect_to posts_path
-        else
-            p @post.errors.full_messages
-            render :new
-        end
-    
+      if @post.save
+          flash[:notice] = 'Post created successfully!'
+          redirect_to posts_path
+      else
+          p @post.errors.full_messages
+          render :new
+      end
     end
 
     def show
