@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
 
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except:[:index]
   before_action :find_post, only:[ :create, :destroy, :update ]
   before_action :authorize_user!, only: [:destroy]
 
@@ -47,7 +47,7 @@ class CommentsController < ApplicationController
   def authorize_user!
     unless can? :crud, @comment
       flash[:danger] = 'Access Denied'
-      redirect_to root_path
+      redirect_to home_path
     end
   end
 

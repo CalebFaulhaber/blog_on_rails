@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    sessionp[:user_id]=nil
+    session[:user_id]=nil
     redirect_to home_path, notice: 'Logged Off'
   end
 

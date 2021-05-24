@@ -35,8 +35,10 @@ Rails.application.routes.draw do
   # destroy - n/a
 
   resources :users, only:[:new, :create]
-  resources :sessions, only:[:new, :create]
+  # resources :sessions, only:[:new, :create]
 
-  delete '/sessions', to: 'sessions#destroy'
+  get '/session', to: 'sessions#new', as: 'new_session'
+  post '/session', to: 'sessions#create'
+  delete '/session', to: 'sessions#destroy'
 
 end
