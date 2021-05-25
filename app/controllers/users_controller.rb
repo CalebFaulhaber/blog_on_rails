@@ -38,23 +38,23 @@ class UsersController < ApplicationController
     @user = current_user
     p '*** line 39 ***'
 
-    if @user.authenticate(params[:password])
-    p '*** line 42 ***'
+    if @user.authenticate(params[:current_password])
+      p '*** line 42 ***'
       if password_confirm?
-    p '*** line 44 ***'
+        p '*** line 44 ***'
         if @user.update user_params
-    p '*** line 46 ***'
+          p '*** line 46 ***'
           redirect_to home_path, notice: 'Password Changed'
         else
-    p '*** line 49 ***'
+          p '*** line 49 ***'
           render :password, alert: 'Failed to change password'
         end
       else
-    p '*** line 53 ***'
+        p '*** line 53 ***'
         render :password, alert: 'New password typed incorrect'
       end
     else 
-    p '*** line 57 ***'
+      p '*** line 57 ***'
       render :password, alert: 'Incorrect Password'
     end
   end
@@ -67,7 +67,7 @@ class UsersController < ApplicationController
 
   def password_confirm?
     p '*** line 69 ***'
-    params[:new_password] === params[:password_confirmation]
+    params[:new_password] === params[:new_password_confirmation]
   end
 
 end
