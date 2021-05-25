@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   #     - redirect // delete request
 
   resources :posts do
-    resources :comments, only:[ :create, :destroy ]
+    resources :comments, only:[ :create, :destroy, :edit, :update ]
   end
   # # PATHS
   # index  - products_path
@@ -35,6 +35,8 @@ Rails.application.routes.draw do
   # destroy - n/a
 
   resources :users, only:[:new, :create]
+  get '/user/edit', to: 'users#edit', as: 'edit_user'
+  patch '/user', to: 'users#update', as: 'update_user'
   # resources :sessions, only:[:new, :create]
 
   get '/session', to: 'sessions#new', as: 'new_session'

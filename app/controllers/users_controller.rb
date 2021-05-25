@@ -16,6 +16,18 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+    @user = current_user
+  end
+
+  def update
+    @user = current_user
+    if @user.update user_params
+      redirect_to home_path(@user), notice: 'User Updated'
+    else
+      render :show
+    end
+  end
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)

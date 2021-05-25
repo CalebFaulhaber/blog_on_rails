@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 
-  before_action :authenticate_user!, except:[:index]
+  before_action :authenticate_user!, except:[:index, :show]
   before_action :find_post, only: [:show, :edit, :update, :destroy]
   # before_action :authorize_user!, only: [:destroy]
 
@@ -13,20 +13,18 @@ class PostsController < ApplicationController
   end
 
   def create
-    p post_params
     @post = Post.new post_params
     @post.user = current_user
 
     if can? :crud, @post
       if @post.save
-        # flash[:notice] = 'Post created successfully!'
         redirect_to posts_path, notice: 'Post created successfully!'
       else
         p @post.errors.full_messages
         render :new
       end
     else
-      redirect_to home_path(@post, @comment), notice: 'Must be signed in & owner of post to edit'
+      redirect_to home_path, notice: 'Must be signed in & owner of post to edit'
     end
   end
 
@@ -44,7 +42,7 @@ class PostsController < ApplicationController
       @post.update post_params
       redirect_to post_path(@post)
     else
-      redirect_to home_path(@post, @comment), notice: 'Must be signed in & owner of post to edit'
+      redirect_to home_path, notice: 'Must be signed in & owner of post to edit'
     end
   end
 
@@ -53,7 +51,7 @@ class PostsController < ApplicationController
       @post.destroy
       redirect_to posts_path
     else
-      redirect_to home_path(@post, @comment), notice: 'Must be signed in & owner of post to edit'
+      redirect_to home_path, notice: 'Must be signed in & owner of post to edit'
     end
   end
 
@@ -68,8 +66,8 @@ class PostsController < ApplicationController
     @post = Post.find params[:id]
   end
 
-  def authenticate_user!
-    redirect_to home_path, alert: 'Not Authorized' unless can?(:crud, Post)
-  end
+  # def authenticate_user!
+  #   redirect_to home_path, alert: 'Not Authorized' unless can?(:crud, Post)
+  # end
 
 end

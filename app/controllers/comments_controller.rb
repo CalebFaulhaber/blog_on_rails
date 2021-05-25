@@ -9,31 +9,38 @@ class CommentsController < ApplicationController
     @comment = Comment.new comment_params
     @comment.post = @post
     @comment.user = @current_user
-    
-    if @comment.save
-      redirect_to post_path(@post, @comment), notice: 'Comment Created'
+    if can? :crud, @comment
+      if @comment.save
+        redirect_to post_path(@post), notice: 'Comment Created'
+      else
+        p @post.errors.full_messages
+        @comment = @post.comments.order(created_at: :desc)
+        redirect_to :posts
+      end
     else
-      p @post.errors.full_messages
-      @comment = @post.comments.order(created_at: :desc)
-      redirect_to :posts
-    end
+      redirect_to :show, alert: 'Not Authorized'
+    end      
   end
 
   def destroy
     @comment = Comment.find params[ :id ]
     if can? :crud, @comment
       @comment.destroy
-      redirect_to post_path(@post, @comment), notice: 'Comment Deleted'
+      redirect_to post_path(@post), notice: 'Comment Deleted'
     else
       redirect_to :show, alert: 'Not Authorized'
     end
+  end
+
+  def edit
+
   end
 
   def update
     @comment = Comment.find params[ :id ]
     if can? :crud, @comment 
       @comment.update comment_params
-      redirect_to post_path(@post, @comment), notice: 'Comment Updated'
+      redirect_to post_path(@post), notice: 'Comment Updated'
     else
       render :show
     end
