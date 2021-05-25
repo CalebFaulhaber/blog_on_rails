@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
 
   before_action :authenticate_user!, except:[:index]
   before_action :find_post, only:[ :create, :destroy, :update ]
-  before_action :authorize_user!, only: [:destroy]
+  # before_action :authorize_user!, only: [:create, :update, :destroy]
 
   def create 
     @post = Post.find params[:post_id]
@@ -13,22 +13,27 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to post_path(@post, @comment), notice: 'Comment Created'
     else
+      p @post.errors.full_messages
       @comment = @post.comments.order(created_at: :desc)
-      render '/posts/show'
+      redirect_to :posts
     end
   end
 
   def destroy
     @comment = Comment.find params[ :id ]
-    @comment.destroy
-    redirect_to post_path(@post, @comment), notice: 'Comment Deleted'
+    if can? :crud, @comment
+      @comment.destroy
+      redirect_to post_path(@post, @comment), notice: 'Comment Deleted'
+    else
+      redirect_to :show, alert: 'Not Authorized'
+    end
   end
 
   def update
     @comment = Comment.find params[ :id ]
-
-    if @comment.update comment_params
-      redirect_to post_path(@post, @comment)
+    if can? :crud, @comment 
+      @comment.update comment_params
+      redirect_to post_path(@post, @comment), notice: 'Comment Updated'
     else
       render :show
     end
@@ -46,8 +51,8 @@ class CommentsController < ApplicationController
 
   def authorize_user!
     unless can? :crud, @comment
-      flash[:danger] = 'Access Denied'
-      redirect_to home_path
+      # flash[:danger] = 'Access Denied'
+      redirect_to home_path, danger: 'Access Denied'
     end
   end
 

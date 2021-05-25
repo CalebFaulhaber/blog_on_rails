@@ -9,11 +9,11 @@
       <%= link_to 'Home', posts_path, class: 'nav-item' %>
     </div>
     |
-    <div>
-      <%= link_to 'New Post', new_post_path, class: 'nav-item' %>
-    </div>
-    |
     <% if user_signed_in? %>
+      <div>
+        <%= link_to 'New Post', new_post_path, class: 'nav-item' %>
+      </div>
+      |
       <div>
         Hello, <%= current_user.name %>
       </div>
