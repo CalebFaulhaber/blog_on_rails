@@ -37,10 +37,14 @@ Rails.application.routes.draw do
   resources :users, only:[:new, :create]
   get '/user/edit', to: 'users#edit', as: 'edit_user'
   patch '/user', to: 'users#update', as: 'update_user'
-  # resources :sessions, only:[:new, :create]
+  get '/user/password', to: 'users#password_edit', as: 'edit_password'
+  patch '/user/password', to: 'users#password_update', as: 'update_password'
 
+  # resources :sessions, only:[:new, :create, :destroy]
   get '/session', to: 'sessions#new', as: 'new_session'
   post '/session', to: 'sessions#create'
   delete '/session', to: 'sessions#destroy'
+  # Only changed from resources due to wording of homework assignment 
+  # requestiong url to be '/session' instead of '/sessions'.
 
 end

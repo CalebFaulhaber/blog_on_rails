@@ -15,17 +15,20 @@
     <%= f.text_field :email %>
   </div>
 
-  <div>
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-  </div>
+  <% if !user_signed_in? %>
+    <div>
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+    </div>
 
-  <div>
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
-  </div>
-
-  <%= f.submit 'Sign Up' %>
+    <div>
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation %>
+    </div>
+    <%= f.submit 'Sign Up' %>
+  <% else %>
+    <%= f.submit 'Edit User' %>
+  <% end %>
 
 <% end %>
 
