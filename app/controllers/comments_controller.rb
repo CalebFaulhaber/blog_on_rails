@@ -58,8 +58,8 @@ class CommentsController < ApplicationController
 
   def authorize_user!
     unless can? :crud, @comment
-      # flash[:danger] = 'Access Denied'
-      redirect_to home_path, danger: 'Access Denied'
+      flash[:danger] = 'Access Denied'
+      redirect_to home_path
     end
   end
 

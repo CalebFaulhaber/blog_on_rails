@@ -35,14 +35,14 @@ class UsersController < ApplicationController
   end
 
   def password_update
-    @user = current_user
+    @user = current_user 
     p '*** line 39 ***'
 
-    if @user.authenticate(params[:current_password])
+    if @user.authenticate(params[:user][:current_password])
       p '*** line 42 ***'
       if password_confirm?
         p '*** line 44 ***'
-        if @user.update user_params
+        if @user.update password_params
           p '*** line 46 ***'
           redirect_to home_path, notice: 'Password Changed'
         else
@@ -65,9 +65,15 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
 
+  def password_params
+    params.require(:user).permit(:password, :password_confirmation)
+  end
+
   def password_confirm?
-    p '*** line 69 ***'
-    params[:new_password] === params[:new_password_confirmation]
+    p '*** line 74 ***'
+    newPass = params[:user][:password] === params[:user][:password_confirmation]
+    oldPass = params[:user][:password] != params[:user][:current_password]
+    newPass === true && oldPass === true
   end
 
 end
