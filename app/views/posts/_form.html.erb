@@ -1,0 +1,18 @@
+<%= form_with model: @post, local: true do |p| %>
+  <% if @post.errors.full_messages.each do |msg| %>
+    <ul>
+        <li><%= msg %></li>
+    </ul>
+  <% end; end %>
+
+  <div class="new_post_inner_container">
+    <%= p.label :title %>
+    <%= p.text_field :title %>
+  </div>
+  <div class="new_post_inner_container">
+    <%= p.label :body %>
+    <%= p.text_field :body %>
+  </div >
+  <%= p.submit 'Submit', class: "btn btn-secondary"%>
+
+<% end %>

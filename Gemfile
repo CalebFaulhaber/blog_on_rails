@@ -21,7 +21,9 @@ gem 'jbuilder', '~> 2.7'
 gem 'bcrypt', '~> 3.1.7'
 gem 'hirb'
 gem 'cancancan'
-gem 'bootstrap', '~> 4.6.0'
+gem 'bootstrap', '~> 5.0.0'
+gem 'jquery-rails'
+# gem 'sprockets-rails' # what is this and why does rubygem say I need it for bootstrap?
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

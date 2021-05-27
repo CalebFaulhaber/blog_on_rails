@@ -1,0 +1,36 @@
+<%# <h1>Url: '/posts/show'<h1> %>
+<div class="card outer_show_container">
+    <h2 class="card-title"><%= @post.title %></h2>
+    <p class="card-text"><%= @post.body %></p>
+    <p class="card-subtitle mb-2"><%= time_ago_in_words(@post.created_at) %></p>
+
+    <div class="d-flex justify-content-start">
+        <%= button_to 'Edit', 
+                    edit_post_path(@post), 
+                    method: :get, 
+                    class: "btn btn-secondary" %>
+        <%= button_to 'Delete', 
+                    post_path(@post), 
+                    method: :delete, 
+                    data: { confirm: 'Are you sure?' }, 
+                    class: "btn btn-secondary" %>
+    </div>
+
+    <%= render 'comments/form' %>
+
+    <% @comments.each do |comment| %>
+        <%= comment.body %><br>
+        <small><%= time_ago_in_words(comment.created_at) %></small><br>
+      <% if can? :crud, comment %>
+        <%= button_to 'Delete', 
+                    post_comment_path(@post, comment),
+                    method: :delete, 
+                    data:{ confirm: 'Are you sure?' },
+                    class: "btn btn-secondary" %>
+        <%= button_to 'Edit', 
+                    post_comment_path(@post, comment),
+                    method: :get, 
+                    class: "btn btn-secondary" %>
+      <% end %>
+    <% end %>
+</div>

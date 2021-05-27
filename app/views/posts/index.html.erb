@@ -1,0 +1,15 @@
+<%# <h1>Posts Index Page</h1>
+<h2>Url: '/posts/index'</h2> %>
+
+<div class="d-flex justify-content-around flex-wrap index_container">
+    <% @posts.each do |post| %>
+        <div class="card">
+            <h3 class="card-title"><%= link_to post.title, post_path(post) %></h3>
+            <P class="card-text"><%= truncate(post.body, :length => 44) %></p>
+        </div>
+    <% end %>
+</div>
+
+
+
+
